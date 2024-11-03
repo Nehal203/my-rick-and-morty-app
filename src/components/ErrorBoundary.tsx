@@ -1,13 +1,3 @@
-// import ErrorBoundary from '../components/ErrorBoundary';
-
-// const Home = () => {
-//   return (
-//     <ErrorBoundary>
-//       {/* Home component content */}
-//     </ErrorBoundary>
-//   );
-// };
-// ErrorBoundary.tsx
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 
 interface ErrorBoundaryProps {

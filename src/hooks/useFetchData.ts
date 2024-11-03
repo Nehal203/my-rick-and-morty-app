@@ -1,11 +1,7 @@
-// import { useFetchData } from '../hooks/useFetchData';
+import { useEffect, useState } from 'react';
 
-// const { data: episodes, loading, error } = useFetchData('https://rickandmortyapi.com/api/episode');
-// useFetchData.ts
-import { useState, useEffect } from 'react';
-
-export const useFetchData = (url: string) => {
-  const [data, setData] = useState(null);
+export const useFetchData = <T>(url: string) => {
+  const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -13,14 +9,16 @@ export const useFetchData = (url: string) => {
     const fetchData = async () => {
       try {
         const response = await fetch(url);
-        const result = await response.json();
+        if (!response.ok) throw new Error('Network response was not ok');
+        const result: T = await response.json();
         setData(result);
       } catch (err) {
-        setError("Failed to fetch data");
+        setError(err instanceof Error ? err.message : 'An unknown error occurred');
       } finally {
         setLoading(false);
       }
     };
+
     fetchData();
   }, [url]);
 

@@ -17,7 +17,7 @@ const EpisodeList: React.FC<EpisodeListProps> = ({ episodes, selectedEpisode, on
 
   const handleSelect = (episodeId: number) => {
     onSelect(episodeId);
-    router.push(`/episodes?id=${episodeId}`);
+    router.push(`/episodes?id=${episodeId}`); // Navigate to episode page
   };
 
   return (

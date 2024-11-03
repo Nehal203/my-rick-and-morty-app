@@ -1,6 +1,7 @@
 import React from 'react';
+import Image from 'next/image';
 
-interface Character {
+export interface Character {
   id: number;
   name: string;
   image: string;
@@ -15,7 +16,13 @@ const CharacterList: React.FC<CharacterListProps> = ({ characters }) => {
     <div className="grid grid-cols-3 gap-4">
       {characters.map((character) => (
         <div key={character.id} className="border p-4 rounded shadow hover:shadow-lg transition">
-          <img src={character.image} alt={character.name} className="w-full h-40 object-cover rounded" />
+          <Image
+            src={character.image}
+            alt={character.name}
+            className="w-full h-40 object-cover rounded"
+            width={200} // Set width
+            height={200} // Set height
+          />
           <h2 className="text-center mt-2 font-semibold">{character.name}</h2>
         </div>
       ))}
